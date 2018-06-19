@@ -1,0 +1,36 @@
+<view class="main">
+  <view class="orders-box">
+    <view class="orders-list">
+      <view class="orders-number">{{trade.consign_time}}
+        <text class="orders-number-right">{{trade.item_id}}</text>
+      </view>
+      <view class="orders-detail" wx:for="{{trade.orders}}" wx:for-item="goods">
+        <view class="gname">{{goods.title}}</view>
+        <view class="">￥{{goods.price}} X {{goods.num}} </view>
+        <!-- <text class="orders-status">￥{{goods.numPrice}}</text> -->
+        <text class="orders-status">{{goods.state_str}}</text>
+      </view>
+      <view class='shifu'>实付：
+        <text>￥{{trade.total_fee}}</text>
+      </view>
+      <view class='fenge'></view>
+    </view>
+  </view>
+</view>
+<!-- <view class="main">
+    <view class="orders-box">
+        <view class="orders-list" wx:for="{{list}}" wx:for-item="item">
+            <view class="orders-number">{{item.consign_time}}
+            <text class="orders-number-right">{{item.item_id}}</text>
+            </view>
+            <view class="orders-detail" wx:for="{{item.orders}}" wx:for-item="goods">
+                <view class="gname">{{goods.title}}</view>
+                <view class="">￥{{goods.price}} X {{goods.num}}                      </view>
+                <text class="orders-status">￥{{goods.numPrice}}</text>
+                <text class="orders-status">{{item.status}}已付款</text>
+            </view>
+            <view class='shifu'>实付：<text>￥{{item.totle_fee}}</text></view>
+            <view class='fenge'></view>
+        </view>
+  </view>
+</view> -->
