@@ -31,7 +31,7 @@ Page({
       })
     } else {
       wx.request({
-        url: "http://localhost:909/token",//"http://api.yanzhiwu.com/token",
+        url: "http://api.yanzhiwu.com/token",//"http://api.yanzhiwu.com/token",//http://localhost:909/token
         header: {
           "Content-Type": "application/x-www-form-urlencoded",
         },

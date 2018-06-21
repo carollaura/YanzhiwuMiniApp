@@ -1,5 +1,11 @@
-<view  class="container">
-<view  class='location'><text>{{location}}</text></view>
+<view class="container">
+  <view class='location'>
+    <view bindtap='changeShop'>
+      <image class="location-left" src="../../../img/icon-location.png"></image>
+      <text>{{currentLocation}}</text>
+      <image class="location-right" src="../../../img/right-arrow.png"></image>
+    </view>
+  </view>
 
   <view class="toast_mask" animation="{{count}}" wx:if="{{isShowToast}}"></view>
 
@@ -11,20 +17,21 @@
     </view>
   </view>
   <image class="indexbanner" src="../../../image/index.png"></image>
-  <image class="indexsao" bindtap="scanCode2" src="../../../image/indexsao.png"></image>
-  <view class="Iname" wx:if="{{saoyisao}}">
-    {{name}}
-  </view>
-  <!-- <view wx:else class="I">
-    <image class="" src="../../../image/I.png"></image>
-    先扫描货架二维码,才可以扫描商品条形码
-  </view> -->
-  <image class="indexsao" bindtap="scanCode3" src="../../../image/saoyisao.png"></image>
+  <!-- <image class="indexsao" bindtap="scanCode2" src="../../../image/indexsao.png"></image> 
+ 
+  <image class="indexsao" bindtap="scanBarCode" src="../../../image/saoyisao.png"></image>-->
 
-  <!-- <view class="I btn-area">
-    <image class="" src="../../../image/I.png"></image>
-    扫描商品条形码，即可把商品添加到购物车
-  </view> -->
+  <image class="scanqr" bindtap="scanBarCode" src="../../../img/scanQR.png"></image>
+  <span style="font-size:18px;">
+    <view>
+      <button bindtap="bindViewTap" style="margin-top:55rpx;">手工添加产品</button>
+      <view>
+        <modal title="" hidden="{{prodSeriNoHidden}}" confirm-text="添加产品" cancel-text="取消" bindconfirm="modalBindaconfirm" bindcancel="modalBindcancel">
+          <input class="inputText" style='border:2rpx solid #e2e2e4;border-radius:18rpx;height:2.4em;' placeholder="输入产品序列号" />
+        </modal>
+      </view>
+    </view>
+  </span>
 </view>
 
 

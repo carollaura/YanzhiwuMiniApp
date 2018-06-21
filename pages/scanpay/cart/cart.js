@@ -10,9 +10,10 @@ Page({
     saoyisao: false,    // 是否能扫码
     obj: {
       name: "hello"
-    }
+    },
+    prodSeriNoHidden: true//是否隐藏产品序列号输入框
   },
-  scanCode: function () {
+  scanBarCode: function () {
     var that = this
     wx.scanCode({
       success: function (res) {
@@ -321,6 +322,25 @@ Page({
       carts: carts,
       totalPrice: total.toFixed(2)
     });
+  },
+  //事件处理函数  
+  bindViewTap: function () {
+    this.setData({
+      prodSeriNoHidden: !this.data.prodSeriNoHidden
+    })
+
+  },
+  //确定按钮点击事件  
+  modalBindaconfirm: function () {
+    this.setData({
+      prodSeriNoHidden: !this.data.prodSeriNoHidden,
+    })
+  },
+  //取消按钮点击事件  
+  modalBindcancel: function () {
+    this.setData({
+      prodSeriNoHidden: !this.data.prodSeriNoHidden,
+    })
   }
 
 })

@@ -10,7 +10,9 @@ Page({
     motto: getApp().data.openId,
     toastText: '',
     userInfo: {},
-    location: "",
+    locationList:{},
+    currentLocation: "",
+    prodSeriNoHidden: true,//是否隐藏产品序列号输入框
     saoyisao: false,//控制显示
     name: '',//网点名字
     company: '',     //网点企业
@@ -27,14 +29,15 @@ Page({
   },
 
   onShow() {
-    var _this = this;
+    let _this = this;
     // 调用接口
     qqmapsdk.search({
       keyword: '燕之屋',
       success: function (res) {
         let shopList = res.data.filter(v => v.category.includes("购物"))
         _this.setData({
-          location: shopList[0].title
+          currentLocation: shopList[0].title,
+          locationList: shopList
         })
         console.log(res);
       },
@@ -43,6 +46,33 @@ Page({
       }
     });
 
+  },
+
+
+  //事件处理函数  
+  bindViewTap: function () {
+    this.setData({
+      prodSeriNoHidden: !this.data.prodSeriNoHidden
+    })
+
+  },
+  //确定按钮点击事件  
+  modalBindaconfirm: function () {
+    this.setData({
+      prodSeriNoHidden: !this.data.prodSeriNoHidden,
+    })
+  },
+  //取消按钮点击事件  
+  modalBindcancel: function () {
+    this.setData({
+      prodSeriNoHidden: !this.data.prodSeriNoHidden,
+    })
+  },
+  changeShop:function(){
+    let _this = this;
+    wx.navigateTo({
+      url: '/pages/scanpay/shop/shop?shops=' + JSON.stringify(_this.data.locationList)
+    })
   },
   showToast: function () {
     var _this = this;
@@ -101,7 +131,7 @@ Page({
             getApp().data.goodsNo = invInfo.InventoryNo
 
             for (var i = 0; i < getApp().data.carts.length; i++) {
-              if (getApp().data.carts[i].id == goodsNo) {
+              if (getApp().data.carts[i].id == invInfo.InventoryNo) {
                 getApp().data.carts[i].num = getApp().data.carts[i].num + 1;
                 wx.showToast({
                   title: '已添加购物车',
@@ -152,7 +182,7 @@ Page({
 
   },
   /*扫描条形码 */
-  scanCode3: function () {
+  scanBarCode: function () {
     var that = this
     wx.scanCode({
       success: function (res) {
@@ -166,7 +196,7 @@ Page({
             "Authorization": "bearer " + app.globalData.aToken,
           },
           method: "get",
-          data: { "tid": getApp().data.customerNo },
+          data: { "tid": "E20170724195026037555445" },
           complete: function (res) {
 
             if (res == null || res.data == null) {
@@ -261,12 +291,6 @@ Page({
     })
 
 
-  },
-  //事件处理函数
-  bindViewTap: function () {
-    wx.navigateTo({
-      url: '../../logs/logs'
-    })
   },
   onLoad: function () {
     if (app.globalData.userInfo) {
@@ -484,7 +508,7 @@ Page({
 //     })
 //   },
 //   /*扫描条形码 */
-//   scanCode3: function () {
+//   scanBarCode: function () {
 //     var that = this
 //     wx.scanCode({
 //       success: function (res) {

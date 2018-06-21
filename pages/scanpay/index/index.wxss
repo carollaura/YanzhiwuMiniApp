@@ -10,11 +10,26 @@ background: linear-gradient(to bottom right, red ,yellow, blue);
   height:80rpx;
   text-align: center;
   color:white;
-  line-height: 2;
+  line-height:2.5;
   background: #be1b20;
   border-radius: 100rpx;
 }
-
+.location-left{
+width:50rpx;
+height:50rpx;
+position:relative;
+left:60rpx;
+padding-top:18rpx;
+float:left;
+}
+.location-right{
+width:50rpx;
+height:50rpx;
+position:relative;
+right:60rpx;
+padding-top:18rpx;
+float:right;
+}
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -30,6 +45,13 @@ float: left;
  margin-top:50px;
  width: 290.5px;
  height: 44.5px;
+}
+.scanqr{
+ margin-top:50px;
+ width: 300rpx;
+ height: 300rpx;
+ background: #be1b20;
+ border-radius: 50%;
 }
 .I{ font-size: 36rpx;margin-top:20px; color: #9A9A9A; line-height: }
 .I image{
